@@ -9,7 +9,6 @@ concurrency:
 
 jobs:
   export-silero-vad-to-rknn:
-    if: github.repository_owner == 'k2-fsa' || github.repository_owner == 'csukuangfj'
     name: export silero-vad to rknn
     runs-on: ${{ matrix.os }}
     strategy:
