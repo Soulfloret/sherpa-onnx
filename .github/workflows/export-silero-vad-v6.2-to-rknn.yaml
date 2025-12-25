@@ -1,14 +1,14 @@
-name: export-silero-vad-to-rknn
+name: export-silero-vad-v62-to-rknn
 
 on:
   workflow_dispatch:
 
 concurrency:
-  group: export-silero-vad-to-rknn-${{ github.ref }}
+  group: export-silero-vad-v62-to-rknn-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  export-silero-vad-to-rknn:
+  export-silero-vad-v62-to-rknn:
     if: github.repository_owner == 'k2-fsa' || github.repository_owner == 'csukuangfj'
     name: export silero-vad to rknn
     runs-on: ${{ matrix.os }}
