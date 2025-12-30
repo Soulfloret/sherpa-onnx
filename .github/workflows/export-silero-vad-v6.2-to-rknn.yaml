@@ -46,18 +46,15 @@ jobs:
         run: |
           cd scripts/silero_vad/v6
           chmod +x *
-          curl -SL -O https://github.com/snakers4/silero-vad/raw/refs/heads/master/src/silero_vad/data/silero_vad.jit
-          ./export-onnx.py
-          ./show.py
-
-          ls -lh m.onnx
+          curl -SL -O https://github.com/snakers4/silero-vad/blob/master/src/silero_vad/data/silero_vad.onnx
+          ls -lh silero_vad.onnx
 
           curl -SL -O https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/lei-jun-test.wav
-          ./test-onnx.py  --model ./m.onnx --wav ./lei-jun-test.wav
+          ./test-onnx.py  --model ./silero_vad.onnx --wav ./lei-jun-test.wav
 
           for platform in rk3588 rk3576 rk3568 rk3566 rk3562; do
           echo "Platform: $platform"
-            ./export-rknn.py --in-model ./m.onnx --out-model silero-vad-v6-$platform.rknn  --target-platform $platform
+            ./export-rknn.py --in-model ./silero_vad.onnx --out-model silero-vad-v6-$platform.rknn  --target-platform $platform
             ls -lh silero-vad-v6-$platform.rknn
           done
 
