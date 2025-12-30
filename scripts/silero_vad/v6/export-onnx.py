@@ -103,9 +103,9 @@ def main():
     model = onnx.load("m.onnx")
 
     meta_data = {
-        "model_type": "silero-vad-v4",
+        "model_type": "silero-vad-v6",
         "sample_rate": 16000,
-        "version": 4,
+        "version": 6,
         "h_shape": "2,1,64",
         "c_shape": "2,1,64",
     }
