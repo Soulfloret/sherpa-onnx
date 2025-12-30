@@ -46,7 +46,7 @@ jobs:
         run: |
           cd scripts/silero_vad/v6
           chmod +x *
-          curl -SL -O https://github.com/snakers4/silero-vad/blob/master/src/silero_vad/data/silero_vad.onnx
+          curl -SL -O https://github.com/snakers4/silero-vad/raw/refs/heads/master/src/silero_vad/data/silero_vad.onnx
           ls -lh silero_vad.onnx
 
           curl -SL -O https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/lei-jun-test.wav
