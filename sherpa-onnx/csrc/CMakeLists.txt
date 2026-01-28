@@ -40,6 +40,8 @@ set(sources
   offline-fire-red-asr-model.cc
   offline-lm-config.cc
   offline-lm.cc
+  offline-medasr-ctc-model-config.cc
+  offline-medasr-ctc-model.cc
   offline-model-config.cc
   offline-moonshine-greedy-search-decoder.cc
   offline-moonshine-model-config.cc
@@ -194,7 +196,6 @@ if(SHERPA_ONNX_ENABLE_RKNN)
     ./rknn/transducer-keyword-decoder-rknn.cc
     ./rknn/utils.cc
   )
-
 endif()
 
 if(SHERPA_ONNX_ENABLE_AXERA)
@@ -227,6 +228,7 @@ if(SHERPA_ONNX_ENABLE_ASCEND_NPU)
   list(APPEND sources
     ./ascend/offline-paraformer-model-ascend.cc
     ./ascend/offline-sense-voice-model-ascend.cc
+    ./ascend/offline-whisper-model-ascend.cc
     ./ascend/offline-zipformer-ctc-model-ascend.cc
     ./ascend/utils.cc
   )
@@ -242,6 +244,13 @@ if(SHERPA_ONNX_ENABLE_QNN)
     ./qnn/utils.cc
   )
 endif()
+
+list(APPEND sources
+  offline-funasr-nano-model-config.cc
+  offline-funasr-nano-model.cc
+  offline-recognizer-funasr-nano-impl.cc
+  funasr-nano-tokenizer.cc
+)
 
 if(SHERPA_ONNX_ENABLE_TTS)
   list(APPEND sources
@@ -261,12 +270,15 @@ if(SHERPA_ONNX_ENABLE_TTS)
     offline-tts-matcha-model-config.cc
     offline-tts-matcha-model.cc
     offline-tts-model-config.cc
+    offline-tts-pocket-model-config.cc
+    offline-tts-pocket-model.cc
     offline-tts-vits-model-config.cc
     offline-tts-vits-model.cc
     offline-tts-zipvoice-model-config.cc
     offline-tts-zipvoice-model.cc
     offline-tts.cc
     piper-phonemize-lexicon.cc
+    sentence-piece-tokenizer.cc
     vocoder.cc
     vocos-vocoder.cc
   )
@@ -786,6 +798,7 @@ if(SHERPA_ONNX_ENABLE_TESTS)
   )
   if(SHERPA_ONNX_ENABLE_TTS)
     list(APPEND sherpa_onnx_test_srcs
+      sentence-piece-tokenizer-test.cc
       piper-phonemize-test.cc
     )
   endif()
